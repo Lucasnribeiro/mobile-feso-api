@@ -114,6 +114,7 @@ exports.pedidoStore = [
 /**
  * Pedido update.
  * 
+ * @param {string}      id
  * @param {string}      mesa 
  * @param {string}      status
  * @param {string}      valor
