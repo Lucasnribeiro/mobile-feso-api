@@ -39,16 +39,16 @@ exports.register = [
 	sanitizeBody("lastName").escape(),
 	sanitizeBody("email").escape(),
 	sanitizeBody("password").escape(),
-	// Process request after validation and sanitization.
+	// Process the request after validation and sanitization.
 	(req, res) => {
 		try {
-			// Extract the validation errors from a request.
+			// Extract the validation errors from the request.
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
 				// Display sanitized values/errors messages.
 				return apiResponse.validationErrorWithData(res, "Validation Error.", errors.array());
 			}else {
-				//hash input password
+				//hash for the password
 				bcrypt.hash(req.body.password,10,function(err, hash) {
 					// generate OTP for confirmation
 					let otp = utility.randomNumber(4);
