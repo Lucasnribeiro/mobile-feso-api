@@ -5,6 +5,7 @@ var router = express.Router();
 
 router.get("/", PratoController.pratoList);
 router.get("/:id", PratoController.pratoDetail);
+router.get("/pedido/:id", PratoController.pratoByPedido);
 router.post("/", PratoController.pratoStore);
 router.put("/:id", PratoController.pratoUpdate);
 router.delete("/:id", PratoController.pratoDelete);

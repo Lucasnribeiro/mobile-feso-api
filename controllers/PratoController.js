@@ -68,6 +68,35 @@ exports.pratoDetail = [
 	}
 ];
 
+/**
+ * Prato by Pedido.
+ * 
+ * @param {string}      id
+ * 
+ * @returns {Object}
+ */
+ exports.pratoByPedido = [
+	auth,
+	function (req, res) {
+		if(!mongoose.Types.ObjectId.isValid(req.params.id)){
+			return apiResponse.successResponseWithData(res, "Operation success", {});
+		}
+		try {
+			Prato.findOne({pedido_id: req.params.pedido_id},"_id nome quantidade pedido_id preco_unitario createdAt").then((prato)=>{                
+				if(prato !== null){
+					let pratoData = new PratoData(prato);
+					return apiResponse.successResponseWithData(res, "Operation success", pratoData);
+				}else{
+					return apiResponse.successResponseWithData(res, "Operation success", {});
+				}
+			});
+		} catch (err) {
+			//throw error in json response with status 500. 
+			return apiResponse.ErrorResponse(res, err);
+		}
+	}
+];
+
 
 /**
  * Pedido store.
