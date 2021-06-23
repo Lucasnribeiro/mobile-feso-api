@@ -83,11 +83,10 @@ exports.pratoDetail = [
 		}
 		try {
 			Prato.find({pedido_id: req.params.id},"_id nome quantidade pedido_id preco_unitario createdAt").then((prato)=>{                
-				if(prato !== null){
-					let pratoData = new PratoData(prato);
-					return apiResponse.successResponseWithData(res, "Operation success", pratoData);
+				if(prato.length > 0){
+					return apiResponse.successResponseWithData(res, "Operation success", prato);
 				}else{
-					return apiResponse.successResponseWithData(res, "Operation success", {});
+					return apiResponse.successResponseWithData(res, "Operation success", []);
 				}
 			});
 		} catch (err) {
