@@ -130,7 +130,8 @@ exports.pedidoUpdate = [
 		try {
 			const errors = validationResult(req);
 			var pedido = new Pedido(
-				{ 	mesa: req.body.mesa,
+				{ 	_id: req.params.id,
+					mesa: req.body.mesa,
 					user: req.user,
 					status: req.body.status, 
 					valor: req.body.valor,
@@ -155,7 +156,7 @@ exports.pedidoUpdate = [
 								//update pedido.
 								Pedido.findByIdAndUpdate(req.params.id, pedido, {},function (err) {
 									if (err) { 
-										return apiResponse.ErrorResponse(res, err); 
+										return apiResponse.ErrorResponse(res, pedido); 
 									}else{
 										let pedidoData = new PedidoData(pedido);
 										return apiResponse.successResponseWithData(res,"Pedido update Success.", pedidoData);

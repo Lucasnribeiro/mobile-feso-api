@@ -164,7 +164,8 @@ exports.pratoDetail = [
 		try {
 			const errors = validationResult(req);
 			var prato = new Prato(
-				{ 	nomePrato: req.body.nomePrato,
+				{ 	_id: req.params.id,
+					nomePrato: req.body.nomePrato,
 					valorPrato: req.body.valorPrato
 				});
 
