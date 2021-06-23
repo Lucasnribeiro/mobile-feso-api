@@ -133,7 +133,8 @@ exports.pedidoUpdate = [
 				{ 	mesa: req.body.mesa,
 					user: req.user,
 					status: req.body.status, 
-					valor: req.body.valor
+					valor: req.body.valor,
+					nomeCliente: req.body.nomeCliente
 				});
 
 			if (!errors.isEmpty()) {
